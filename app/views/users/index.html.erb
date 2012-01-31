@@ -1,0 +1,35 @@
+<%= general_title(User, @users.count).html_safe %>
+
+<div class="listing no-filters">
+
+<% if @users.count > 0 %>
+
+<table>
+  <tr>
+    <th><%= tm(User,'username') %></th>
+    <th><%= tm(User,'email') %></th>
+    <th><%= tm(User,'first_name') %></th>
+    <th><%= tm(User,'last_name') %></th>
+    <th><%= tm(User,'user_type') %></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td class="user-name"><%= link_to user.username, user %></td>
+    <td><%= user.email %></td>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.user_type.name %></td>
+    <td><%= write_links(user, is_admin).html_safe %></td>
+  </tr>
+<% end %>
+<tr class="footer">
+  <td colspan="4"><%= will_paginate @users %></td>
+</tr>
+</table>
+
+<% else %>
+<h4><%= t("no_results_found") %></h4
+<% end %>
+</div>

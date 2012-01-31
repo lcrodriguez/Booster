@@ -1,0 +1,18 @@
+<%= form_title(@state).html_safe %>
+
+<%= form_for(@state) do |f| %>
+  <%= errors_for(@state).html_safe %>
+
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :code %>
+    <%= f.text_field :code %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<%= form_title(@material_category).html_safe %>
+
+<%= form_for(@material_category) do |f| %>
+  <%= errors_for(@material_category).html_safe %>
+
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+<%= general_title(MaterialCategory, @material_categories.count).html_safe %>
+
+<div class="listing no-filters">
+
+<% if @material_categories.count > 0 %>
+
+<table>
+  <tr>
+    <th><%= tm(MaterialCategory,'name') %></th>
+    <th></th>
+  </tr>
+
+<% @material_categories.each do |material_category| %>
+  <tr>
+    <td class="doctor-name"><%= link_to material_category.name, material_category %></td>
+    <td><%= write_links(material_category, is_admin).html_safe %></td>
+  </tr>
+<% end %>
+<tr class="footer">
+  <td colspan="4"><%= will_paginate @material_categories %></td>
+</tr>
+</table>
+
+<% else %>
+<h4><%= t("no_results_found") %></h4
+<% end %>
+</div>

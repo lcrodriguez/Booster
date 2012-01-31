@@ -1,0 +1,25 @@
+<%= form_title(@account).html_safe %>
+
+<%= form_for(@account) do |f| %>
+  <%= errors_for(@account).html_safe %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :subdomain %>
+    <%= f.text_field :subdomain %>
+  </div>
+  <div class="field">
+    <%= f.label :owner_email %>
+    <%= f.text_field :owner_email %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

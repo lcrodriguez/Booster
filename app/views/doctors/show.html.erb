@@ -1,0 +1,72 @@
+<%= form_title(@doctor,true).html_safe %>
+
+<p>
+  <b><%= tm(Doctor, 'speciality')%>:</b>
+  <%= @doctor.speciality.name %>
+</p>
+
+<p>
+  <b><%= tm(Doctor, 'user')%>:</b>
+  <%= @doctor.user.username if @doctor.user.present? %>
+</p>
+
+<p>
+  <b><%= tm(Doctor, 'name')%>:</b>
+  <%= @doctor.full_name %>
+</p>
+
+<p>
+  <b><%= tm(Doctor, 'hospital')%>:</b>
+  <%= @doctor.hospital %> <%= @doctor.clinic %>
+</p>
+
+<p>
+  <b><%= tm(Doctor, 'address')%>:</b>
+  <%= @doctor.full_address %>
+
+<div id="map_canvas" style="width: 420px; height: 320px;"></div>
+  
+<%= javascript_include_tag "map" %>
+<script>
+    $(document).ready( function() {
+      initializeMap();
+      markAddress('<%= @doctor.search_address %>');
+    });
+</script>
+  
+</p>
+
+<p>
+  <b><%= tm(Doctor, 'phone')%>:</b>
+  <%= @doctor.phone %>
+</p>
+
+<p>
+  <b><%= tm(Doctor, 'email')%>:</b>
+  <%= @doctor.email %>
+</p>
+
+<p>
+  <b><%= tm(Doctor, 'secretary')%>:</b>
+  <%= @doctor.secretary %>
+</p>
+
+<p>
+  <b><%= tm(Doctor, 'birth_date')%>:</b>
+  <%= @doctor.birth_date %>
+</p>
+
+<p>
+  <b><%= tm(Doctor, 'visit_days')%>:</b>
+  <%= @doctor.visit_days %>
+</p>
+
+<p>
+  <b><%= tm(Doctor, 'visit_hours')%>:</b>
+  <%= @doctor.visit_hours %>
+</p>
+
+<p>
+  <b><%= tm(Doctor, 'comments')%>:</b>
+  <%= @doctor.comments %>
+</p>

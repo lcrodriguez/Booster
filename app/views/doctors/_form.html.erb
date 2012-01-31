@@ -1,0 +1,96 @@
+<%= form_title(@doctor).html_safe %>
+
+<%= form_for(@doctor) do |f| %>
+  <%= errors_for(@doctor).html_safe %>
+
+  <div class="field">
+    <%= f.label :speciality %>
+    <%= select("doctor", "speciality_id", Speciality.all.collect {|s| [ s.name, s.id ] }, {}) %>
+  </div>
+  <div class="field">
+    <%= f.label :user %>
+    <%= select("doctor", "user_id", User.normals.collect {|s| [ s.username, s.id ] }, {}) %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :hospital %>
+    <%= f.text_field :hospital %>
+  </div>
+  <div class="field">
+    <%= f.label :clinic %>
+    <%= f.text_field :clinic %>
+  </div>
+  <div id="map_container" style="width: 420px; height: 350px;">
+    <h4 id="address-found" style="height:30px"><%= t("enter_address") %></h4>
+    <div id="map_canvas" style="width:100%; height:316px"></div>
+  </div>
+  <div class="field field_address">
+    <%= f.label :street %>
+    <%= f.text_field :street, { :class => "field-street" } %>
+  </div>
+  <div class="field field_address">
+    <%= f.label :street_number %>
+    <%= f.text_field :street_number, { :class => "field-streetnumber" } %>
+  </div>
+  
+  <div class="field field_address">
+    <%= f.label :state %>
+    <%= select("doctor", "state_id", State.all.collect {|s| [ s.name, s.id ] }, {},  { :class => "field-state" }) %>
+  </div>
+  <div class="field field_address">
+    <%= f.label :city %>
+    <%= select("doctor", "city_id", City.all.collect {|s| [ s.name, s.id ] }, {}, { :class => "field-city" }) %>
+  </div>
+  <div class="field">
+    <%= f.label :zip_code %>
+    <%= f.text_field :zip_code %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :secretary %>
+    <%= f.text_field :secretary %>
+  </div>
+  <div class="field">
+    <%= f.label :birth_date %>
+    <%= f.date_select :birth_date %>
+  </div>
+  <div class="field">
+    <%= f.label :visit_days %>
+    <%= f.text_field :visit_days %>
+  </div>
+  <div class="field">
+    <%= f.label :visit_hours %>
+    <%= f.text_field :visit_hours %>
+  </div>
+  <div class="field">
+    <%= f.label :comments %>
+    <%= f.text_field :comments %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= javascript_include_tag "map" %>
+<script>
+$(document).ready(function() {
+      initializeMap();
+      $(".field_address").change(addressChanged);
+      addressChanged();
+});
+</script>

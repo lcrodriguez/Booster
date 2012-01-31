@@ -1,0 +1,36 @@
+<%= form_title(@route,true).html_safe %>
+
+<p>
+  <b><%= tm(Route, "name") %>:</b>
+  <%= @route.name %>
+</p>
+
+<p>
+  <b><%= tm(Route, "description") %>:</b>
+  <%= @route.description %>
+</p>
+
+<p>
+  <b><%= tm(Route, "user") %>:</b>
+  <%= @route.user.username %>
+</p>
+
+<p>
+  <b><%= tm(Route, "start_date") %>:</b>
+  <%= @route.start_date %>
+</p>
+
+    <table>
+    <tr>
+      <th><%= tm(RouteLine, "state") %></th>
+      <th><%= tm(RouteLine, "city") %></th>
+      <th><%= tm(RouteLine, "comments") %></th>
+    </tr>
+  <% @route.route_lines.each do |line|%>
+    <tr>
+      <td><%= line.city.name %></td>
+      <td><%= line.state.name %></td>
+      <td><%= line.comments %></td>
+    </tr>
+  <% end %>
+</table>

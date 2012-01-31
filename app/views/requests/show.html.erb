@@ -1,0 +1,36 @@
+<%= form_title(@request,true).html_safe %>
+
+<p>
+<b><%= tm(Request, "user")%>:</b>
+  <%= @request.user.username %>
+</p>
+
+<p>
+  <b><%= tm(Request, "name")%>:</b>
+  <%= @request.name %>
+</p>
+
+<p>
+  <b><%= tm(Request, "description")%>:</b>
+  <%= @request.description %>
+</p>
+
+<p>
+  <b><%= tm(Request, "customer")%>:</b>
+  <%= @request.customer.name %>
+</p>
+
+  <table>
+    <tr>
+      <th><%= tm(RequestItem, "material")%></th>
+      <th><%= tm(RequestItem, "material_category")%></th>
+      <th><%= tm(RequestItem, "quantity")%></th>
+    </tr>
+<% @request.request_items.each do |item| %>
+    <tr>
+      <td><%= item.material.name %></td>
+      <td><%= item.material.material_category.name %></td>
+      <td><%= item.quantity %></td>
+    </tr>
+<% end %>
+  </table>

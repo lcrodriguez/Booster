@@ -1,0 +1,83 @@
+<div id="directionsPanel" style="float:right;width:30%;height:100%"></div>  
+<div id="map_canvas" style="width:450px; height:300px"></div>
+<div style="clear:both"></div>
+
+  <script>
+  var doctors = new Array();
+  var directionDisplay;
+  var directionsService = new google.maps.DirectionsService();
+  var map;
+
+  function eachAddress() {
+    if ($(this).val() != "")
+      readAddress($(this).val());
+  }
+  
+  function readAddress(id) {
+    $.get("/doctors/address/" + id + ".json", function(data) {
+        doctors.push(data);
+    }, 'text');
+  }
+  
+  function recalculateRoute() {
+    doctors = new Array();
+    $(".doctor-select").each(eachAddress);
+    window.setTimeout(calcRoute, 500);
+  }
+    
+  $(document).ready(function() {
+    initialize();
+    
+  	$( "#sortable" ).sortable(
+      { 
+        update: recalculateRoute
+      }
+    );
+    
+		$( "#sortable" ).disableSelection();
+
+    $(".doctor-select").change(function() { 
+      readAddress($(this).val());
+      window.setTimeout(calcRoute, 500);
+    });
+  });
+  
+  function initialize() {
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    var myOptions = {
+      zoom:15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById("directionsPanel"));
+  }
+  
+  function calcRoute() {
+    var start = doctors[0];
+    var end = doctors[doctors.length-1];
+    
+    var waypts = [];
+    
+    var checkboxArray = document.getElementById("waypoints");
+    for (var i = 1; i < doctors.length-1; i++) {
+        waypts.push({
+            location:doctors[i],
+            stopover:true
+        });
+    }
+
+    var request = {
+        origin:start, 
+        waypoints: waypts,
+        optimizeWaypoints: true,
+        destination:end,
+        travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      }
+    });
+  }
+</script> 

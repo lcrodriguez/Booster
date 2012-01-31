@@ -1,0 +1,17 @@
+<%= form_title(@city).html_safe %>
+
+<%= form_for(@city) do |f| %>
+  <%= errors_for(@city).html_safe %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :state %>
+    <%= select("city", "state_id", State.all.collect {|s| [ s.name, s.id ] }, {}) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

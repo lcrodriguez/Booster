@@ -1,0 +1,20 @@
+<%= form_title(@material,true).html_safe %>
+
+<p>
+  <b><%=tm(Material, "name") %>:</b>
+  <%= @material.name %>
+</p>
+
+<p>
+  <b><%=tm(Material, "code") %>:</b>
+  <%= @material.code %>
+</p>
+
+<p>
+  <b><%=tm(Material, "description") %>:</b>
+  <%= @material.description %>
+</p>
+<p>
+  <b><%=tm(Material, "category_name") %>:</b>
+  <%= @material.material_category.name %>
+</p>

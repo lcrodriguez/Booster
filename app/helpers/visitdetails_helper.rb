@@ -1,0 +1,2 @@
+module VisitdetailsHelper
+end

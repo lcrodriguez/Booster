@@ -1,0 +1,25 @@
+<%= form_title(@expense).html_safe %>
+
+<%= form_for(@expense) do |f| %>
+  <%= errors_for(@expense).html_safe %>
+
+  <div class="field">
+    <%= f.label :user %>
+    <%= select("expense", "user_id", User.normals.collect {|s| [ s.username, s.id ] }, {}) %>
+  </div>
+  <div class="field">
+    <%= f.label :route %>
+    <%= select("expense", "route_id", Route.all.collect {|s| [ s.name, s.id ] }, {}) %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

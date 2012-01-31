@@ -1,0 +1,58 @@
+<%= form_title(@request).html_safe %>
+
+<%= form_for(@request) do |f| %>
+  <%= errors_for(@request).html_safe %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :user %>
+    <%= f.select 'user_id', options_for_select(User.normals.collect {|s| [ s.username, s.id ] }, @request.user_id) %>
+  </div>
+  <div class="field">
+    <%= f.label :customer %>
+    <%= f.select 'customer_id', options_for_select(Customer.all.collect {|s| [ s.name, s.id ] }, @request.customer_id) %>
+  </div>
+  <div class="field">
+    <%= f.label :status %>
+    <% if !f.object.id.blank? %>
+      <%= f.select :status, options_for_select(@request_status, @request.status) %>
+    <% else %>
+      <%= f.hidden_field :status, :value => "Abierto" %>
+      <span>Abierto</span>
+    <% end %>
+  </div>
+  
+  <table class="field-table">
+    <tr>
+      <th><%= tm(RequestItem, "material")%></th>
+      <th><%= tm(RequestItem, "material_category")%></th>
+      <th><%= tm(RequestItem, "quantity")%></th>
+    </tr>
+  <% f.fields_for :request_items do |builder|%>
+    <tr>
+      <td><%= builder.object.material.name %></td>
+      <td><%= builder.object.material.material_category.name %></td>
+      <td>
+        <%= builder.hidden_field('material_id', :value => builder.object.material.id.to_s) %>
+        <%= builder.text_field :quantity %>
+      </td>
+      <% if !f.object.id.blank? %>
+      <td class="remove">
+          <%= builder.check_box :_destroy %><%= builder.label :_destroy, t("remove") %>
+      </td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

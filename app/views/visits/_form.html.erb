@@ -1,0 +1,80 @@
+<% if (!@visit.present?) %>
+<h1>Seleccione un pedido</h1>
+<h5>Debe seleccionar un pedido en el cual imputar su visita.</h5>
+<div class="selector">
+<%= form_tag('/visits/new', :method => "get") do %>
+
+  <div class="field">
+    <%= label_tag :request, tm(Visit,"request") %>
+    <%= select_tag :request, options_for_select(Request.all.collect {|s| [ s.name, s.id ] }, params[:request]) %>
+  </div>
+
+  <div class="actions">
+  <%= submit_tag(t("select")) %>
+  </div>
+
+  <% end %>
+</div>
+
+<% end %>
+
+<% if (@visit.present?) %>
+<%= form_title(@visit).html_safe %>
+<%= form_for(@visit) do |f| %>
+  <%= errors_for(@visit).html_safe %>
+
+  <div class="field">
+    <%= f.label :user %>
+    <%= f.select 'user_id', options_for_select(User.normals.collect {|s| [ s.username, s.id ] }, @visit.user_id) %>
+  </div>
+  <div class="field">
+    <%= f.label :request %>
+    <%= f.hidden_field('request_id', :value => f.object.request.id.to_s) %>
+    <span><%= f.object.request.name %></span>
+  </div>
+  <div class="field">
+    <%= f.label :visiton %>
+    <%= f.date_select :visiton %>
+  </div>
+
+  <div class="field">
+    <%= f.label :doctor %>
+    <%= f.autocomplete_field :docname, autocomplete_doctor_full_name_visits_path, :id_element => '#visit_doctor_id' %>
+    <%= f.hidden_field :doctor_id, :value => f.object.doctor_id %>
+    <em>Busque el médico escribiendo su nombre</em>
+  </div>
+
+  <table class="field-table">
+    <tr>
+      <th><%= tm(Visitdetail, "material")%></th>
+      <th><%= tm(Material, "material_category")%></th>
+      <th><%= t("available")%></th>
+      <th><%= tm(Visitdetail, "quantity")%></th>
+      <th><%= tm(Visitdetail, "description")%></th>
+    </tr>
+  <% f.fields_for :visitdetails do |builder|%>
+    <tr>
+      <td><%= builder.object.material.name %></td>
+      <td><%= builder.object.material.material_category.name %></td>
+      <td><%= Visitdetail.maxrequest(@visit.request_id, builder.object.material.id) %></td>
+      <td>
+        <%= builder.hidden_field('request_id', :value => f.object.request.id.to_s) %>
+        <%= builder.hidden_field('material_id', :value => builder.object.material.id.to_s) %>
+        <%= builder.hidden_field('quantityrequested', :value => builder.object.quantityrequested.to_s) %>
+        <%= builder.text_field :quantity %>
+      </td>
+      <td><%= builder.text_field :description %></td>
+      <% if !f.object.id.blank? %>
+      <td class="remove">
+          <%= builder.check_box :_destroy %><%= builder.label :_destroy, t("remove") %>
+      </td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<% end %>

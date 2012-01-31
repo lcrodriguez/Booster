@@ -1,0 +1,13 @@
+<%= form_title(@speciality).html_safe %>
+
+<%= form_for(@speciality) do |f| %>
+  <%= errors_for(@speciality).html_safe %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

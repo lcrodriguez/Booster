@@ -1,0 +1,58 @@
+<%= general_title(Request, @requests.count).html_safe %>
+<div class="filters">
+  <%= form_tag("/requests/", :method => "get") do %>
+  
+  <div>
+    <%= label_tag(:text, t(:text)) %>
+    <%= text_field_tag :text, params[:text]  %>
+  </div>
+  <div>
+    <%= label_tag(:customer, tm(Request, :customer)) %>
+    <%= select_tag :customer, options_for_select(@customers, params[:customer]) %>
+  </div>
+
+  <div>
+    <%= label_tag(:status, tm(Request, :status)) %>
+    <%= select_tag :status, options_for_select(@statuses, params[:status]) %>
+  </div>
+
+  <div class="search">
+  <%= submit_tag(t("search")) %>
+  </div>
+
+  <% end %>
+</div>
+
+<div class="listing">
+
+<% if @requests.count > 0 %>
+
+<table>
+  <tr>
+    <th><%= tm(Request,'name') %></th>
+    <th><%= tm(Request,'user') %></th>
+    <th><%= tm(Request,'customer') %></th>
+    <th><%= tm(Request,'description') %></th>
+    <th><%= tm(Request,'status') %></th>
+    <th></th>
+  </tr>
+
+<% @requests.each do |request| %>
+  <tr>
+    <td class="request-name"><%= link_to request.name, request %></td>
+    <td><%= request.user.username %></td>
+    <td><%= request.customer.name %></td>
+    <td><%= request.description %></td>
+    <td><%= request.status %></td>
+    <td><%= write_links(request, is_admin).html_safe %></td>
+  </tr>
+<% end %>
+<tr class="footer">
+  <td colspan="4"><%= will_paginate @requests %></td>
+</tr>
+</table>
+
+<% else %>
+<h4><%= t("no_results_found") %></h4
+<% end %>
+</div>

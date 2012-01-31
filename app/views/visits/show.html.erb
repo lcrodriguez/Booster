@@ -1,0 +1,38 @@
+<%= form_title(@visit,true).html_safe %>
+
+<p>
+  <b><%= tm(Visit, "user")%>:</b>
+  <%= @visit.user.username %>
+</p>
+
+<p>
+  <b><%= tm(Visit, "request")%>:</b>
+  <%= @visit.request.name %>
+</p>
+
+<p>
+  <b><%= tm(Visit, "visiton")%>:</b>
+  <%= @visit.visiton %>
+</p>
+
+<p>
+  <b><%= tm(Visit, "doctor")%>:</b>
+  <%= @visit.doctor.full_name %>
+</p>
+
+  <table>
+    <tr>
+      <th><%= tm(Visitdetail, "material")%></th>
+      <th><%= tm(Material, "material_category")%></th>
+      <th><%= tm(Visitdetail, "quantity")%></th>
+      <th><%= tm(Visitdetail, "description")%></th>
+    </tr>
+<% @visit.visitdetails.each do |item| %>
+    <tr>
+      <td><%= item.material.name %></td>
+      <td><%= item.material.material_category.name %></td>
+      <td><%= item.quantity %></td>
+      <td><%= item.description %></td>
+    </tr>
+<% end %>
+  </table>

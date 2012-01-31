@@ -1,0 +1,56 @@
+<%= general_title(Route, @routes.count).html_safe %>
+<div class="filters">
+  <%= form_tag('/routes', :method => "get") do %>
+  
+  <div>
+    <%= label_tag(:text, t(:text)) %>
+    <%= text_field_tag :text, params[:text]  %>
+  </div>
+  <div>
+    <%= label_tag(:user, tm(Route, "user")) %>
+    <%= select_tag :user, options_for_select(@users, params[:user]) %>
+  </div>
+  
+  <div>
+    <%= label_tag :start_date, tm(Route, "start_date") %>
+    <%= select_date @start_date, {:prompt => true, :prefix => :start_date} %>
+  </div>
+  
+  <div class="search">
+  <%= submit_tag(t("search")) %>
+  </div>
+
+  <% end %>
+</div>
+
+<div class="listing">
+
+<% if @routes.count > 0 %>
+
+<table>
+  <tr>
+    <th><%= tm(Route,'name') %></th>
+    <th><%= tm(Route,'description') %></th>
+    <th><%= tm(Route,'user') %></th>
+    <th><%= tm(Route,'start_date') %></th>
+    <th></th>
+  </tr>
+
+<% @routes.each do |route| %>
+  <tr>
+    <td class="route-name"><%= link_to route.name, route %></td>
+    <td><%= truncate(route.description, :length => 40, :omission =>"…") %></td>
+    <td><%= route.user.username %></td>
+    <td><%= route.start_date %></td>
+    <td><%= write_links(route, is_admin).html_safe %></td>
+  </tr>
+<% end %>
+<tr class="footer">
+  <td colspan="4"><%= will_paginate @routes %></td>
+</tr>
+</table>
+
+<% else %>
+<h4><%= t("no_results_found") %></h4
+<% end %>
+</div>

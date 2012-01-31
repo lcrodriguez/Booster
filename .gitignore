@@ -1,0 +1,14 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.sass-cache/
+.svn
+public/system/*
+public/assets/*
+logs/*
+public/assets/****
+public/system/**/*
+*~
+public/ckfinder/userfiles/*
+public/ckfinder/userfiles/**/*

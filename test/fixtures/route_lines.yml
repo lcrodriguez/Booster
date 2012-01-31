@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  references: 
+  references: 
+  comments: MyString
+  sortorder: 
+  references: 
+
+two:
+  references: 
+  references: 
+  comments: MyString
+  sortorder: 
+  references: 

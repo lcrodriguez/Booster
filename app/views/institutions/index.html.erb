@@ -1,0 +1,74 @@
+<%= general_title(Institution, @institutions.count).html_safe %>
+
+<div class="filters">
+  <%= form_tag('/institutions', :method => "get") do %>
+  
+  <div>
+    <%= label_tag(:text, t(:text)) %>
+    <%= text_field_tag :text, params[:text]  %>
+  </div>
+  <div>
+    <%= label_tag(:state, tm(Institution, :state)) %>
+    <%= select_tag :state, options_for_select(@states, params[:state]) %>
+  </div>
+
+  <div>
+     <%= label_tag(:city, tm(Institution, :city)) %>
+     <%= select_tag :city, options_for_select(@cities, params[:city]) %>
+  </div>
+
+  <div class="search">
+  <%= submit_tag(t("search")) %>
+  </div>
+
+  <% end %>
+</div>
+
+<div class="listing">
+
+<% if @institutions.count > 0 %>
+
+<table>
+  <tr>
+    <th></th>
+    <th><%= tm(Institution,'name') %></th>
+    <th><%= tm(Institution,'address') %></th>
+    <th></th>
+  </tr>
+
+<% @institutions.each do |institution| %>
+  <tr>
+    <td><input type="checkbox" class="address-check" data-address="<%= institution.search_address %>" data-title="<%= institution.name %>" /></td>
+    <td class="institution-name"><%= link_to institution.name, institution %></td>
+    <td><%= truncate(institution.full_address, :length => 40, :omission =>"…") %></td>
+    <td><%= write_links(institution, is_admin).html_safe %></td>
+  </tr>
+<% end %>
+<tr class="footer">
+  <td colspan="4"><%= will_paginate @institutions %></td>
+</tr>
+</table>
+
+<div class="selected-filters">
+  <a href="#map_canvas" id="show-map"><%= t("show_on_map") %></a>
+</div>
+
+<% else %>
+<h4><%= t("no_results_found") %></h4
+<% end %>
+</div>
+
+<div style="height:0px;overflow:hidden">
+<div id="map_canvas" class="map-border" style="width: 700px; height: 400px"></div>
+</div>
+
+<%= javascript_include_tag "map" %>
+
+<script>
+$(document).ready(function(){ 
+  enableShowMap();
+});
+
+</script>
+
+

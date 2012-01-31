@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  speciality: 
+  user: 
+  first_name: MyString
+  last_name: MyString
+  hospital: MyString
+  clinic: MyString
+  street: MyString
+  street_number: MyString
+  city: 
+  zip_code: MyString
+  phone: MyString
+  email: MyString
+  secretary: MyString
+  birth_date: 2010-12-26
+  visit_days: MyString
+  visit_hours: MyString
+
+two:
+  speciality: 
+  user: 
+  first_name: MyString
+  last_name: MyString
+  hospital: MyString
+  clinic: MyString
+  street: MyString
+  street_number: MyString
+  city: 
+  zip_code: MyString
+  phone: MyString
+  email: MyString
+  secretary: MyString
+  birth_date: 2010-12-26
+  visit_days: MyString
+  visit_hours: MyString

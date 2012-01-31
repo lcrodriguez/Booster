@@ -1,0 +1,14 @@
+<%= form_title(@city,true).html_safe %>
+
+<p>
+  <b><%= tm(City, "name")%>:</b>
+  <%= @city.name %>
+</p>
+
+<p>
+  <b><%= tm(City, "state")%>:</b>
+  <%= @city.state.name %>
+</p>
+
+
+

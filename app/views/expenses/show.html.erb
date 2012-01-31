@@ -1,0 +1,22 @@
+<%= form_title(@expense,true).html_safe %>
+
+<p>
+  <b><%= tm(Expense, "description")%>:</b>
+  <%= @expense.description %>
+</p>
+
+<p>
+  <b><%= tm(Expense, "route")%>:</b>
+  <%= @expense.route.name %>
+</p>
+
+<p>
+  <b><%= tm(Expense, "user")%>:</b>
+  <%= @expense.user.username %>
+</p>
+
+<p>
+  <b><%= tm(Expense, "amount")%>:</b>
+  <%= @expense.amount %>
+</p>
+

@@ -1,0 +1,29 @@
+<%= general_title(UserType, @user_types.count).html_safe %>
+
+<div class="listing no-filters">
+
+<% if @user_types.count > 0 %>
+
+<table>
+  <tr>
+    <th><%= tm(UserType,'name') %></th>
+    <th><%= tm(UserType,'is_admin') %></th>
+    <th></th>
+  </tr>
+
+<% @user_types.each do |user_type| %>
+  <tr>
+    <td class="user_type-name"><%= link_to user_type.name, user_type %></td>
+    <td><%= "Si" if user_type.is_admin %><%= "No" if !user_type.is_admin %></td>
+    <td><%= write_links(user_type, is_admin).html_safe %></td>
+  </tr>
+<% end %>
+<tr class="footer">
+  <td colspan="4"><%= will_paginate @user_types %></td>
+</tr>
+</table>
+
+<% else %>
+<h4><%= t("no_results_found") %></h4
+<% end %>
+</div>

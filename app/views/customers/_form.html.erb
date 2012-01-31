@@ -1,0 +1,13 @@
+<%= form_title(@customer).html_safe %>
+
+<%= form_for(@customer) do |f| %>
+  <%= errors_for(@customer).html_safe %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

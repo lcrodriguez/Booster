@@ -1,0 +1,11 @@
+<%= form_title(@state,true).html_safe %>
+
+<p>
+  <b><%= tm(State, "name")%>:</b>
+  <%= @state.name %>
+</p>
+
+<p>
+  <b><%= tm(State, "code")%>:</b>
+  <%= @state.code %>
+</p>

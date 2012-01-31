@@ -1,0 +1,17 @@
+<%= form_title(@user_type).html_safe %>
+
+<%= form_for(@user_type) do |f| %>
+  <%= errors_for(@user_type).html_safe %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.check_box :is_admin %>
+    <%= f.label :is_admin %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

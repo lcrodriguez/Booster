@@ -1,0 +1,52 @@
+<%= form_title(@institution,true).html_safe %>
+
+<p>
+<b><%= tm(Institution, "name")%>:</b>
+  <%= @institution.name %>
+</p>
+
+<p>
+  <b><%= tm(Institution, 'address')%>:</b>
+  <%= @institution.full_address %>
+
+<div id="map_canvas" style="width: 420px; height: 320px;"></div>
+</p>
+
+<p>
+<b><%= tm(Institution, "phone")%>:</b>
+  <%= @institution.phone %>
+</p>
+
+<p>
+<b><%= tm(Institution, "email")%>:</b>
+  <%= @institution.email %>
+</p>
+
+<p>
+<b><%= tm(Institution, "user")%>:</b>
+  <%= @institution.user.username %>
+</p>
+
+<p>
+<b><%= tm(Institution, "type")%>:</b>
+  <%= @institution.type %>
+</p>
+
+<p>
+<b><%= tm(Institution, "comments")%>:</b>
+  <%= @institution.comments %>
+</p>
+
+<p>
+<b><%= tm(Institution, "contact")%>:</b>
+  <%= @institution.contact %>
+</p>
+
+
+<%= javascript_include_tag "map" %>
+<script>
+    $(document).ready( function() {
+      initializeMap();
+      markAddress('<%= @institution.search_address %>');
+    });
+</script>

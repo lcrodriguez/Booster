@@ -1,0 +1,81 @@
+<%= form_title(@institution).html_safe %>
+
+<%= form_for(@institution) do |f| %>
+  <%= errors_for(@institution).html_safe %>
+
+  <div class="field">
+    <%= f.label :user %>
+    <%= select("institution", "user_id", User.all.collect {|s| [ s.username, s.id ] }, {}) %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contact %>
+    <%= f.text_field :contact %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :type %>
+    <%= f.select :type, options_for_select(@types, @institution.type) %>
+  </div>
+
+  <div id="map_container" style="width: 420px; height: 350px;">
+  <h4 id="address-found" style="height:30px"><%= t("enter_address") %></h4>
+    <div id="map_canvas" style="width:100%; height:316px"></div>
+  </div>
+  
+  <div class="field field_address">
+    <%= f.label :street %>
+    <%= f.text_field :street, { :class => "field-street" } %>
+  </div>
+  
+  <div class="field field_address">
+    <%= f.label :street_number %>
+    <%= f.text_field :street_number, { :class => "field-streetnumber" } %>
+  </div>
+  
+  <div class="field field_address">
+    <%= f.label :state %>
+    <%= select("institution", "state_id", State.all.collect {|s| [ s.name, s.id ] }, {},  { :class => "field-state" }) %>
+  </div>
+  <div class="field field_address">
+    <%= f.label :city %>
+    <%= select("institution", "city_id", City.all.collect {|s| [ s.name, s.id ] }, {}, { :class => "field-city" }) %>
+  </div>
+  <div class="field">
+    <%= f.label :zip_code %>
+    <%= f.text_field :zip_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comments %>
+    <%= f.text_field :comments %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= javascript_include_tag "map" %>
+<script>
+$(document).ready(function() {
+      initializeMap();
+      $(".field_address").change(addressChanged);
+      addressChanged();
+});
+</script>

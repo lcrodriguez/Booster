@@ -1,0 +1,29 @@
+<%= form_title(@user,true).html_safe %>
+
+<p>
+  <b><%= tm(User, "username") %>:</b>
+  <%= @user.username %>
+</p>
+
+<p>
+  <b><%= tm(User, "first_name") %>:</b>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <b><%= tm(User, "last_name") %>:</b>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <b><%= tm(User, "email") %>:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b><%= tm(User, "user_type") %>:</b>
+  <%= @user.user_type.name %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

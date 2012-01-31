@@ -1,0 +1,371 @@
+es-AR:
+
+  error_quantity_excedeed:
+    other: "Se ha excedido el limite disponible para la linea."
+  error_header: 
+    one: "1 error fue encontrado:"
+    other: "%{count} errores fueron encontrados:"
+  error_amount_lines: 
+    one: "Al menos 1 línea debe cargarse"
+    other: "Al menos %{count} líneas deben cargarse"
+  new_header: "Nuevo %{title}"
+  edit_header: "Editando %{title} No. %{number}"
+  view_header: "Visualizando %{title}"
+  export: "Exportar XLS"
+  record_created: "Se ha creado un nuevo registro."
+  record_updated: "Se ha actualizado su información."
+  imported: "Se ha importado con exito."
+  show: "Ver"
+  edit: "Modificar"
+  eliminar: "Borrar"
+  previous: "Anterior"
+  next: "Siguiente"
+  
+  available: "Disponible"
+  select: "Seleccionar"
+  drop_select: "--Seleccione--"
+  no_results_found: "No se encontraron resultados" 
+  
+  success_login: "Ud. ha ingresado satisfactoriamente."
+  sucess_logout: "Ud. ha salido correctamente."
+  
+  show_on_map: "Ver en mapa"
+  select_an_item: "Seleccione al menos un item"
+  
+  enter_address: "Ingrese su direccion para visualizar en el mapa..."
+
+  login_title: "Iniciar Sesión"
+  login_button: "Ingresar"
+  hello: "Hola"
+  logout: "Cerrar Sesión"
+  login: "Ingresar"
+  register: "Registrarse"
+  company: "Empresa"
+  view: "Visualizar"
+  edit: "Editar"
+  destroy: "Borrar"
+  back: "Regresar"
+  show: "Visualizar"
+  text: "Texto"
+  search: "Buscar"
+  remove: "Quitar"
+  
+  activerecord:
+    models:
+      doctor: "Médico"
+      account: "Cuenta"
+      city: "Ciudad"
+      customer: "Cliente"
+      expense: "Gasto"
+      institution: "Institución"
+      material_category: "Categoría"
+      material: "Producto"
+      request: "Pedido"
+      request_item: "Linea"
+      route_line: "Tramo"
+      route: "Hoja de Ruta"
+      speciality: "Especialidad"
+      state: "Estado"
+      user_session: "Ingreso"
+      user_type: "Tipo de Usuario"
+      user: "Usuario"
+      visit: "Visita"
+      visitdetail: "Linea"
+    attributes:
+      doctor:
+        first_name: "Nombre"    
+        last_name: "Apellido"    
+        hospital: "Hospital"
+        clinic: "Clinica"
+        street: "Calle"
+        street_number: "Numero"
+        state: "Provincia"
+        city: "Ciudad"
+        zip_code: "C.P."
+        phone: "Telefono"
+        email: "E-mail"
+        secretary: "Secretaria"
+        birth_date: "Fecha de Nacimiento"
+        visit_days: "Dias de Visita"
+        visit_hours: "Horas de Visita"
+        comments: "Comentarios"
+        speciality: "Especialidad"
+        user: "Promotora"
+        name: "Nombre Completo"
+        address: "Dirección"
+      institution:
+        name: "Razón Social"    
+        street: "Calle"
+        street_number: "Numero"
+        address: "Dirección"
+        state: "Provincia"
+        city: "Ciudad"
+        zip_code: "C.P."
+        phone: "Telefono"
+        email: "E-mail"
+        comments: "Comentarios"
+        type: "Tipo"
+        contact: "Persona de Contacto"
+        user: "Promotora"
+      city:
+        name: "Descripción"
+        state: "Estado"
+      state:
+        name: "Descripción"
+        code: "Codigo"
+      speciality:
+        name: "Descripción"
+      customer:
+        name: "Razón Social"
+      city:
+        name: "Descripción"
+        state: "Estado"
+      expense:
+        description: "Descripción"
+        route: "Ruta"
+        amount: "Monto"
+        user: "Promotora"
+      material_category:
+        name: "Descripción"
+      material:
+        name: "Descripción"
+        description: "Descripción Larga"
+        material_category: "Categoria"
+        code: "Codigo"
+      request_item:
+        material: "Producto"
+        quantity: "Cantidad"
+      request:
+        user: "Promotora"
+        customer: "Cliente"
+        status: "Estado"
+        name: "Descripción"
+      route:
+        name: "Descripción"
+        description: "Descripción Larga"
+        user: "Promotora"
+        start_date: "Fecha de Inicio"
+      route_line:
+        state: "Provincia"
+        city: "Ciudad"
+        comments: "Comentarios"        
+      user_type:
+        name: "Descripción"
+        is_admin: "Es administrador?"
+      user:
+        username: "Usuario"
+        password: "Clave"
+        password_confirmation: "Clave (confirmación)"
+        email: "Email"
+        user_type: "Tipo"
+        first_name: "Nombre"
+        last_name: "Apellido"
+      visitdetail:
+        material: "Producto"
+        quantity: "Cantidad"
+        description: "Descripción"
+      visit:
+        user: "Promotora"
+        request: "Pedido"
+        doctor: "Medico"
+        docname: "Medico"
+        visiton: "Fecha"
+      user_session:
+        username: "Usuario"
+    errors:
+      template:
+        header:
+          one: "%{model} no pudo guardarse debido a 1 error"
+          other: "%{model} no pudo guardarse debido a %{count} errores"
+        body: "Revise que los siguientes campos sean válidos:"
+
+      messages:
+        taken: "ya ha sido tomado"
+        record_invalid: "La validación falló: %{errors}"
+        <<: *errors_messages
+
+      full_messages:
+        format: "%{attribute}%{message}"      
+
+  authlogic:
+    error_messages:
+      login_blank: no puede estar vacia.
+      login_not_found: es invalido.
+      login_invalid: solo debe usar letras, numeros, espacios y guiones.
+      consecutive_failed_logins_limit_exceeded: Consecutive failed logins limit exceeded, account is disabled.
+      email_invalid: should look like an email address.
+      password_blank: no puede estar vacia.
+      password_invalid: es invalida.
+      not_active: Su cuenta no esta activa.
+      not_confirmed: Su cuenta no ha sido confirmada.
+      not_approved: Su cuenta no ha sido aprobada.
+      no_authentication_details: Debe ingresar usuario/clave.
+    models:
+      user_session: Ingreso
+    attributes:
+      user_session:
+        login: login
+        username: Usuario
+        email: email
+        password: Clave
+        remember_me: Recordame la proxima vez
+
+  number:
+    percentage:
+      format:
+        delimiter: ","
+    currency:
+      format:
+        format: "%u%n"
+        unit: "$"
+        separator: "."
+        delimiter: ","
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+    format:
+      delimiter: ","
+      precision: 2
+      significant: false
+      strip_insignificant_zeros: false
+      separator: "."
+    human:
+      format:
+        delimiter: ","
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: "Mil"
+          million: "Millón"
+          billion: "Billón"
+          trillion: "Trillón"
+          quadrillion: "Cuatrillón"
+    precision:
+      format:
+        delimiter: ","
+
+  date:
+    order: [:day, :month, :year]
+    abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
+    day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    formats:
+      short: "%d de %b"
+      default: "%d/%m/%Y"
+      long: "%A, %d de %B de %Y"
+  time:
+    formats:
+      short: "%d de %b a las %H:%M hrs"
+      default: "%a, %d de %b de %Y a las %H:%M:%S %Z"
+      long: "%A, %d de %B de %Y a las %I:%M %p"
+    am: "am"
+    pm: "pm"
+
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " y "
+      last_word_connector: " y "
+
+    select:
+      prompt: "Por favor selecciona"
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "medio minuto"
+      less_than_x_seconds:
+        one: "menos de 1 segundo"
+        other: "menos de %{count} segundos"
+      x_seconds:
+        one: "1 segundo"
+        other: "%{count} segundos"
+      less_than_x_minutes:
+        one: "menos de 1 minuto"
+        other: "menos de %{count} minutos"
+      x_minutes:
+        one: "1 minuto"
+        other: "%{count} minutos"
+      about_x_hours:
+        one: "cerca de 1 hora"
+        other: "cerca de %{count} horas"
+      x_days:
+        one: "1 día"
+        other: "%{count} días"
+      about_x_months:
+        one: "cerca de 1 mes"
+        other: "cerca de %{count} meses"
+      x_months:
+        one: "1 mes"
+        other: "%{count} meses"
+      about_x_years:
+        other: "cerca de %{count} años"
+        one: "cerca de 1 año"
+      over_x_years:
+        one: "más de 1 año"
+        other: "más de %{count} años"
+      almost_x_years:
+        one: "casi 1 año"
+        other: "casi %{count} años"
+    prompts:
+      year: 'Año'
+      month: 'Mes'
+      day: 'Día'
+      hour: 'Hora'
+      minute: 'Minuto'
+      second: 'Segundos'
+
+  helpers:
+    select:
+      prompt: "Por favor selecciona"
+
+    submit:
+      create: 'Crear %{model}'
+      update: 'Actualizar %{model}'
+      submit: 'Guardar %{model}'
+
+  errors:
+      format: "%{attribute} %{message}"
+
+      messages: &errors_messages
+        inclusion: "no está incluído en la lista"
+        exclusion: "está reservado"
+        invalid: "es inválido"
+        confirmation: "no coincide con la confirmación"
+        blank: "no puede estar en blanco"
+        empty: "no puede estar vacío"
+        not_a_number: "no es un número"
+        not_an_integer: "debe ser un entero"
+        less_than: "debe ser menor que %{count}"
+        less_than_or_equal_to: "debe ser menor o igual que %{count}"
+        greater_than: "debe ser mayor que %{count}"
+        greater_than_or_equal_to: "debe ser mayor o igual que %{count}"
+        too_short:
+          one: "es demasiado corto (mínimo 1 caracter)"
+          other: "es demasiado corto (mínimo %{count} caracteres)"
+        too_long:
+          one: "es demasiado largo (máximo 1 caracter)"
+          other: "es demasiado largo (máximo %{count} caracteres)"
+        equal_to: "debe ser igual a %{count}"
+        wrong_length:
+          one: "longitud errónea (debe ser de 1 caracter)"
+          other: "longitud errónea (debe ser de %{count} caracteres)"
+        accepted: "debe ser aceptado"
+        even: "debe ser un número par"
+        odd: "debe ser un número non"      
+    
+        

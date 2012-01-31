@@ -1,0 +1,11 @@
+<%= form_title(@user_type,true).html_safe %>
+
+<p>
+  <b><%= tm(UserType, "name")%>:</b>
+  <%= @user_type.name %>
+</p>
+
+<p>
+  <b><%= tm(UserType, "is_admin")%>:</b>
+  <%= "Si" if @user_type.is_admin %><%= "No" if !@user_type.is_admin %>
+</p>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  request: 
+  material: 
+  quantity: 1
+
+two:
+  request: 
+  material: 
+  quantity: 1

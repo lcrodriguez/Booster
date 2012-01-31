@@ -1,0 +1,51 @@
+<%= form_title(@route).html_safe %>
+
+<%= form_for(@route) do |f| %>
+  <%= errors_for(@route).html_safe %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :user %>
+    <%= f.select 'user_id', options_for_select(User.normals.collect {|s| [ s.username, s.id ] }, @route.user_id) %></td>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date, {:class => "calendar"} %>
+  </div>
+  
+  <table class="field-table">
+    <tr>
+      <th><%= tm(RouteLine, "state") %></th>
+      <th><%= tm(RouteLine, "city") %></th>
+      <th><%= tm(RouteLine, "comments") %></th>
+      <th></th>
+    </tr>
+  <% f.fields_for :route_lines do |builder|%>
+  <tr>
+    <td>
+    <%= builder.label :state %>
+    <%= builder.select 'state_id', options_for_select(add_default(State.all.collect {|s| [ s.name, s.id ] }), builder.object.state_id),  {}  %>
+    </td>
+    <td>
+    <%= builder.label :city %>
+    <%= builder.select 'city_id', options_for_select(add_default(City.all.collect {|s| [ s.name, s.id ] }), builder.object.city_id),  {}  %>
+    </td>
+    <td>
+    <%= builder.label :comments %>
+    <%= builder.text_field :comments  %>
+    </td>
+  </tr>
+  <% end %>
+  </table>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

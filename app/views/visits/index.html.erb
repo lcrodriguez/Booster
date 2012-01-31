@@ -1,0 +1,52 @@
+<%= general_title(Visit, @visits.count).html_safe %>
+<div class="filters">
+  <%= form_tag('/visits', :method => "get") do %>
+  
+  <div>
+    <%= label_tag(:request, tm(Visit, :request)) %>
+    <%= select_tag :request, options_for_select(@requests, params[:request]) %>
+  </div>
+  
+  <div>
+    <%= label_tag :visiton, tm(Visit, :visiton) %>
+    <%= select_date @visiton, {:prompt => true, :prefix => :visiton} %>
+  </div>
+
+
+  <div class="search">
+  <%= submit_tag(t("search")) %>
+  </div>
+
+  <% end %>
+</div>
+
+<div class="listing">
+
+<% if @visits.count > 0 %>
+
+<table>
+  <tr>
+    <th><%= tm(Visit,'visiton') %></th>
+    <th><%= tm(Visit,'user') %></th>
+    <th><%= tm(Visit,'request') %></th>
+    <th><%= tm(Visit,'doctor') %></th>
+    <th></th>
+  </tr>
+
+<% @visits.each do |visit| %>
+  <tr>
+    <td class="visit-name"><%= link_to visit.visiton, visit %></td>
+    <td><%= visit.user.username %></td>
+    <td><%= visit.request.name %></td>
+    <td><%= visit.doctor.full_name %></td>
+    <td><%= write_links(visit, is_admin).html_safe %></td>
+  </tr>
+<% end %>
+<tr class="footer">
+  <td colspan="4"><%= will_paginate @visits %></td>
+</tr>
+</table>
+
+<% else %>
+<h4><%= t("no_results_found") %></h4
+<% end %>
